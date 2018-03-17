@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f7c955a175c347a38ff25b5b7fcfd3ae" Name="Diagram1">
+        <EntityTypeShape EntityType="MSTestTradingDBModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MSTestTradingDBModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MSTestTradingDBModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MSTestTradingDBModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MSTestTradingDBModel.AspNetUser" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="MSTestTradingDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="MSTestTradingDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="MSTestTradingDBModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MSTestTradingDBModel.Customer" Width="1.5" PointX="8.25" PointY="2.125" />
+        <EntityTypeShape EntityType="MSTestTradingDBModel.StockCollection" Width="1.5" PointX="6" PointY="7.375" />
+        <EntityTypeShape EntityType="MSTestTradingDBModel.TradeTransaction" Width="1.5" PointX="3.375" PointY="6.75" />
+        <AssociationConnector Association="MSTestTradingDBModel.FK_Customer_AspNetUsers" />
+        <AssociationConnector Association="MSTestTradingDBModel.FK_Customer_StockCollection" />
+        <AssociationConnector Association="MSTestTradingDBModel.FK_Transaction_Transaction" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
