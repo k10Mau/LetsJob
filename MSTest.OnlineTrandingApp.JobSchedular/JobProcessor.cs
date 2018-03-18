@@ -16,6 +16,7 @@ namespace MSTest.OnlineTrandingApp.JobSchedular
         private IGenericRepository<TradeTransaction> _genericTradeTransactionRepository;
 
         private readonly IUnitOfWork _unitOfWork;
+
         private MSTestTradingDBEntities _dbContext;
 
         public JobProcessor(MSTestTradingDBEntities mSTestTradingDBEntities)
@@ -23,38 +24,49 @@ namespace MSTest.OnlineTrandingApp.JobSchedular
             this.mSTestTradingDBEntities = mSTestTradingDBEntities;
             this._genericTradeTransactionRepository = new GenericRepository<TradeTransaction>(mSTestTradingDBEntities);
             this._unitOfWork = new UnitOfWork(mSTestTradingDBEntities);
+            this._dbContext = mSTestTradingDBEntities;
         }
 
-        void IJobProcessor.ExecuteJob(DateTime today)
+        public void ExecuteJob(DateTime today)
         {
             var todaysBuyers = _genericTradeTransactionRepository.SearchFor(e => e.TransactionType == Convert.ToInt32(TransactionType.Buyer)
                                                                && e.Status == Convert.ToInt32(TransactionStatus.Active) && e.CreateDate <= today);
+            //foreach (var buyer in todaysBuyers)
 
             Parallel.ForEach(todaysBuyers, buyer =>
-            {
-                using (var transaction = _dbContext.Database.BeginTransaction())
-                {
-                    try
-                    {
-                        var sellerList = GetBuyersForThisBuyer(buyer, _genericTradeTransactionRepository);
-                         
-                        _unitOfWork.SaveChanges();
-                        transaction.Commit(); 
-                    } 
-                    catch (Exception ex)
-                    {
-                        transaction.Rollback();
-                        throw ex;
-                    }
-                    finally
-                    {
-                        //log status 
-                    }
-                } 
-            });
-        }
+           {
+               using (var transaction = _dbContext.Database.BeginTransaction())
+               {
+                   lock (transaction)
+                   {
+                       try
+                       {
+                           var sellerList = GetBuyersForThisBuyer(buyer, _genericTradeTransactionRepository);
 
-     
+                           sellerList.ForEach(e =>
+                           {
+                               e.TradeTransaction.Status = Convert.ToInt32(TransactionStatus.Completed);
+                               e.TradeTransaction.StockCount = e.TradeTransaction.StockCount - e.StockToConsider;
+                               _genericTradeTransactionRepository.Update(e.TradeTransaction);
+                           });
+
+                           _unitOfWork.SaveChanges();
+                           transaction.Commit();
+                       }
+                       catch (Exception ex)
+                       {
+                           transaction.Rollback();
+                           throw ex;
+                       }
+                       finally
+                       {
+                            //log status 
+                        }
+                   }
+               }
+           }
+           );
+        }
 
         private List<SellerInfo> GetBuyersForThisBuyer(TradeTransaction buyer, IGenericRepository<TradeTransaction> _genericTradeTransactionRepository)
         {
@@ -85,7 +97,8 @@ namespace MSTest.OnlineTrandingApp.JobSchedular
             return sellerList;
         }
     }
-    class SellerInfo
+
+    internal class SellerInfo
     {
         public TradeTransaction TradeTransaction { get; set; }
         public int StockToConsider { get; set; }
