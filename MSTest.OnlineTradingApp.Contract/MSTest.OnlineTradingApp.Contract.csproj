@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IGenericRepository.cs" />
+    <Compile Include="IJobProcessor.cs" />
     <Compile Include="ILoghandler.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

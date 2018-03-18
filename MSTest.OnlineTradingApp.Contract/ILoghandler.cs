@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MSTest.OnlineTradingApp.Contract
+﻿namespace MSTest.OnlineTradingApp.Contract
 {
     public interface ILoghandler
     {

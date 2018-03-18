@@ -50,11 +50,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="JobProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MSTest.OnlineTradingApp.Contract\MSTest.OnlineTradingApp.Contract.csproj">
+      <Project>{47A59E57-8DAB-4DE6-81E7-8372C0ABE0BB}</Project>
+      <Name>MSTest.OnlineTradingApp.Contract</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
