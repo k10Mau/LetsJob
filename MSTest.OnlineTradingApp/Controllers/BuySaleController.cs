@@ -1,14 +1,16 @@
-﻿using System.Web.Mvc;
+﻿using MSTest.OnlineTradingApp.DAL;
+using MSTest.OnlineTrandingApp.JobSchedular;
+using System.Web.Mvc;
 
 namespace MSTest.OnlineTradingApp.Controllers
 {
     [Authorize]
     public class BuySaleController : Controller
     {
-        private 
+        private readonly JobProcessor _jobProcessor;
         public BuySaleController()
         {
-
+            _jobProcessor = new JobProcessor(new MSTestTradingDBEntities());
         }
         // GET: BuySale
         public ActionResult Index()
