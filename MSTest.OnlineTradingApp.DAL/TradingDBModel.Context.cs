@@ -9,10 +9,9 @@
 
 namespace MSTest.OnlineTradingApp.DAL
 {
-    using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class MSTestTradingDBEntities : DbContext
     {
         public MSTestTradingDBEntities()

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace MSTest.OnlineTradingApp.Contract
 {
@@ -13,5 +11,6 @@ namespace MSTest.OnlineTradingApp.Contract
         void Insert(TEntity obj);
         void Update(TEntity obj);
         void Delete(TEntity obj);
+        IQueryable<TEntity> SearchFor(Expression<Func<TEntity, bool>> predicate);
     }
 }

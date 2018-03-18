@@ -300,9 +300,17 @@
       <Project>{47A59E57-8DAB-4DE6-81E7-8372C0ABE0BB}</Project>
       <Name>MSTest.OnlineTradingApp.Contract</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MSTest.OnlineTradingApp.DAL\MSTest.OnlineTradingApp.DAL.csproj">
+      <Project>{7C286811-1805-4F7E-933B-92E41124706F}</Project>
+      <Name>MSTest.OnlineTradingApp.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MSTest.OnlineTradingApp.Services\MSTest.OnlineTradingApp.Services.csproj">
       <Project>{B8DE1B83-A85F-48D2-B3AC-83C62C22F9BB}</Project>
       <Name>MSTest.OnlineTradingApp.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSTest.OnlineTrandingApp.JobSchedular\MSTest.OnlineTrandingApp.JobSchedular.csproj">
+      <Project>{06C9622D-BF69-473A-8711-A27294B730FA}</Project>
+      <Name>MSTest.OnlineTrandingApp.JobSchedular</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

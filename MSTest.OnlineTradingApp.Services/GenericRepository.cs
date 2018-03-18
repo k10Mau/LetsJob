@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MSTest.OnlineTradingApp.Contract;
 using System.Data.Entity;
-using MSTest.OnlineTradingApp.Services;
+using System.Linq.Expressions;
 
 namespace MSTest.OnlineTradingApp.Services
 {
@@ -64,6 +61,10 @@ namespace MSTest.OnlineTradingApp.Services
             {
                 _log.LogError(ex.Message);
             }
+        }
+        public IQueryable<TEntity> SearchFor(Expression<Func<TEntity, bool>> predicate)
+        {
+            return _dbSet.Where(predicate);
         }
     }
 }

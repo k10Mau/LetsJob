@@ -10,8 +10,7 @@
 namespace MSTest.OnlineTradingApp.DAL
 {
     using System;
-    using System.Collections.Generic;
-    
+
     public partial class TradeTransaction
     {
         public int Id { get; set; }
